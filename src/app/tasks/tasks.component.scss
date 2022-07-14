@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  &:hover .task-img__del{
+      visibility: visible;
+  }
+}
+
+  .task-check {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #42b782;
+    border-radius: 50%;
+
+    &--done {
+      width: 13px;
+      height: 10px;
+    }
+  }
+
+  .task-check_after-done {
+    background: #c2bab5;
+  }
+
+  .task-name {
+    width: 348px;
+    margin-left: 10px;
+  }
+
+  .task-name_done {
+    text-decoration: line-through;
+    color: #a19f9f;
+  }
+
+  .task-img__del {
+    visibility: hidden;
+  }
+
+@media (max-width: 600px) {
+  .task-name {
+    max-width: 250px;
+    transition: .2s;
+  }
+}
+
