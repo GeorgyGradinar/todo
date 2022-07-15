@@ -1,0 +1,5 @@
+<div class="task-check" [class.task-check_after-done]="task.isDone">
+  <img class="task-check--done" src="../../../assets/chekbox-on.svg" alt="check mark">
+</div>
+<p class="task-name" [class.task-name_done]="task.isDone">{{ task.name }}</p>
+<img class="task-img__del" src="../../../assets/del-red.svg" (click)="removeById()" alt="bin">

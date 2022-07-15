@@ -6,10 +6,10 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./input.component.scss']
 })
 export class InputComponent {
-  @Output() nameNewTask: EventEmitter<string> = new EventEmitter<string>();
+  @Output() addNewTask: EventEmitter<string> = new EventEmitter<string>();
 
   public saveTask(nameInput: HTMLInputElement): void {
-    this.nameNewTask.emit(nameInput.value);
+    this.addNewTask.emit(nameInput.value);
     nameInput.value = '';
   }
 }
