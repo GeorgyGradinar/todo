@@ -1,0 +1,31 @@
+<div class="wrapper" >
+  <div class="header" >
+
+    <div class="header-info">
+      <span class="header-info__all-name">Tasks</span>
+      <span class="header-info__all-value">{{ tasks.length }}</span>
+    </div>
+
+    <div class="header-info">
+      <span class="header-info__done-name">Tasks Done</span>
+      <span class="header-info__done-value">{{ countDoneTask() }}</span>
+    </div>
+
+    <button class="header-btn__del--done" (click)="removeDone()" *ngIf="countDoneTask()">
+      <img class="img-del__btn" src="../../assets/delete.svg" alt="bin">
+      Task Done
+    </button>
+
+    <button class="header-btn__del--all" (click)="removeAll()" *ngIf="tasks.length">
+      <img class="img-del__btn" src="../../assets/delete.svg" alt="bin">
+      Task
+    </button>
+  </div>
+
+  <div class="block-content" >
+    <div class="task" *ngFor="let task of tasks; let i  = index" (click)="toggleStatus(i)">
+      <app-task [task]="task" (removeTask)="removeById(task.id)"></app-task>
+    </div>
+  </div>
+  <app-input (addNewTask)="saveTask($event)"></app-input>
+</div>
