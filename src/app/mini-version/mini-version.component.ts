@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Task} from "../task";
+import {Component, OnInit} from '@angular/core';
+import {Status, Task} from "../task";
 
 @Component({
   selector: 'app-mini-version',
@@ -10,10 +10,12 @@ export class MiniVersionComponent implements OnInit {
   public readonly kayLocalStorage: string = 'todos';
   public tasks: Task[] = [];
   public hasError: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
     this.tasks = JSON.parse(localStorage.getItem(this.kayLocalStorage) || '[]');
+
   }
 
   public addToLocalStorage(): void {
@@ -22,7 +24,7 @@ export class MiniVersionComponent implements OnInit {
 
   public saveTask(name: string): void {
     if (name.trim()) {
-      const task: Task = {isDone: false, name: name, id: Math.random()};
+      const task: Task = {isDone: false, name: name, id: Math.random(), status: Status.ToDo};
       this.tasks.push(task)
       this.addToLocalStorage();
     } else {

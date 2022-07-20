@@ -7,9 +7,10 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class InputComponent {
   @Output() addNewTask: EventEmitter<string> = new EventEmitter<string>();
+  public newName: string;
 
-  public saveTask(nameInput: HTMLInputElement): void {
-    this.addNewTask.emit(nameInput.value);
-    nameInput.value = '';
+  public saveTask(): void {
+    this.addNewTask.emit(this.newName);
+    this.newName = '';
   }
 }

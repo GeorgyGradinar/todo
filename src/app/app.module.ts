@@ -8,6 +8,8 @@ import { TaskComponent } from './mini-version/components/task/task.component';
 import { InputComponent } from './mini-version/components/input/input.component';
 import { FullVersionComponent } from './full-version/full-version.component';
 import { MiniVersionComponent } from './mini-version/mini-version.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { MiniVersionComponent } from './mini-version/mini-version.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

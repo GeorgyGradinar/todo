@@ -1,3 +1,5 @@
+
+
 .wrap {
   position: relative;
   width: 100vw;
@@ -6,6 +8,12 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  .button_version--full--mini{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
 
   .todo-title {
     color: #3e7fc0;
