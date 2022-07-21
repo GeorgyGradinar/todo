@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CdkDragDrop} from "@angular/cdk/drag-drop";
 import {Status, Task} from "../task";
 
@@ -7,12 +7,11 @@ import {Status, Task} from "../task";
   templateUrl: './full-version.component.html',
   styleUrls: ['./full-version.component.scss']
 })
-export class FullVersionComponent {
+export class FullVersionComponent implements OnInit{
   public readonly kayLocalStorage: string = 'todos';
   public tasks: Task[] = [];
   public readonly status: typeof Status = Status;
   public hasError: boolean = false;
-  public newName: string;
 
   ngOnInit(): void {
     this.tasks = JSON.parse(localStorage.getItem(this.kayLocalStorage) || '[]');
@@ -24,7 +23,7 @@ export class FullVersionComponent {
 
   public saveTask(name: string): void {
     if (name.trim()) {
-      const task: Task = {isDone: false, name: name, id: Math.random(), status: Status.ToDo};
+      const task: Task = { name: name, id: Math.random(), status: Status.ToDo};
       this.tasks.push(task)
       this.addToLocalStorage();
     } else {
@@ -36,23 +35,37 @@ export class FullVersionComponent {
   }
 
   public todo(): Task[] {
-    return this.tasks.filter((task: Task) => task.status === Status.ToDo)
+    return this.tasks.filter((task: Task) => task.status === Status.ToDo);
   }
 
   public inProgress(): Task[] {
-    return this.tasks.filter((task: Task) => task.status === Status.InProgress)
+    return this.tasks.filter((task: Task) => task.status === Status.InProgress);
   }
 
   public isDone(): Task[] {
-    return this.tasks.filter((task: Task) => task.status === Status.Done)
+    return this.tasks.filter((task: Task) => task.status === Status.Done);
   }
 
   drop(event: CdkDragDrop<Task[]>, status: Status) {
-    let task: Task | undefined = this.tasks.find((item: Task) => item.id === event.item.data.id)
+    let task: Task | undefined = this.tasks.find((item: Task) => item.id === event.item.data.id);
     if (task) {
       task.status = status
       this.addToLocalStorage();
     }
+  }
+
+  public countTaskStatus(status: Status): number {
+    return this.tasks.filter((task: Task) => task.status === status).length;
+  }
+
+  public removeById(id: number): void {
+    this.tasks = this.tasks.filter(tasks => tasks.id != id)
+    this.addToLocalStorage();
+  }
+
+  public removeByStatus(status: Status):void{
+    this.tasks = this.tasks.filter((task: Task) => task.status !== status);
+    this.addToLocalStorage();
   }
 }
 

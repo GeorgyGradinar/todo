@@ -10,14 +10,12 @@
   box-shadow: 10px 10px 20px #3a1056;
   transition: 0.2s;
 
-
   .header {
     height: 50px;
     background: #f1f1f1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
 
     &-info {
       display: flex;
@@ -86,11 +84,36 @@
     }
   }
 
-  .block-add {
+  .block--add {
     height: 70px;
     background: #f1f1f1;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.error {
+  position: absolute;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  bottom: 50px;
+  right: -200px;
+  width: 150px;
+  height: 20px;
+  background: #a90c0c;
+  transition: .2s;
+  border-radius: 6px;
+  color: white;
+  box-shadow: 2px 2px 6px #540303;
+
+  &-close-btn {
+    cursor: pointer;
+  }
+
+  &-on {
+    right: 10px;
   }
 }

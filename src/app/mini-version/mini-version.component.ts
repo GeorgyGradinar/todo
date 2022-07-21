@@ -10,12 +10,10 @@ export class MiniVersionComponent implements OnInit {
   public readonly kayLocalStorage: string = 'todos';
   public tasks: Task[] = [];
   public hasError: boolean = false;
-
-  constructor() { }
+  public readonly status: typeof Status = Status;
 
   ngOnInit(): void {
     this.tasks = JSON.parse(localStorage.getItem(this.kayLocalStorage) || '[]');
-
   }
 
   public addToLocalStorage(): void {
@@ -24,7 +22,7 @@ export class MiniVersionComponent implements OnInit {
 
   public saveTask(name: string): void {
     if (name.trim()) {
-      const task: Task = {isDone: false, name: name, id: Math.random(), status: Status.ToDo};
+      const task: Task = { name: name, id: Math.random(), status: Status.ToDo};
       this.tasks.push(task)
       this.addToLocalStorage();
     } else {
@@ -36,11 +34,15 @@ export class MiniVersionComponent implements OnInit {
   }
 
   public countDoneTask(): number {
-    return this.tasks.filter(tasks => tasks.isDone).length;
+    return this.tasks.filter((task: Task) => task.status === Status.Done).length;
   }
 
-  public toggleStatus(id: number): void {
-    this.tasks[id].isDone = !this.tasks[id].isDone;
+  public toggleStatus(task: Task): void {
+    if (task.status === Status.Done) {
+      task.status = Status.ToDo;
+    } else {
+      task.status = Status.Done
+    }
     this.addToLocalStorage();
   }
 
@@ -55,12 +57,11 @@ export class MiniVersionComponent implements OnInit {
   }
 
   public removeDone(): void {
-    this.tasks = this.tasks.filter(tasks => !tasks.isDone);
+    this.tasks = this.tasks.filter((task: Task) => task.status !== Status.Done);
     this.addToLocalStorage();
   }
 
   public closeError(): void {
     this.hasError = false;
   }
-
 }

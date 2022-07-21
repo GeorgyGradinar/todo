@@ -1,5 +1,5 @@
-<div class="wrapper" >
-  <div class="header" >
+<div class="wrapper">
+  <div class="header">
 
     <div class="header-info">
       <span class="header-info__all-name">Tasks</span>
@@ -22,10 +22,18 @@
     </button>
   </div>
 
-  <div class="block-content" >
-    <div class="task" *ngFor="let task of tasks; let i  = index" (click)="toggleStatus(i)">
-      <app-task [task]="task" (removeTask)="removeById(task.id)"></app-task>
+  <div class="block-content">
+    <div class="task" *ngFor="let task of tasks; let i  = index" (click)="toggleStatus(task)">
+      <app-task [task]="task" (removeTask)="removeById(task.id)"
+                (changeStatus)="toggleStatus(task)"></app-task>
     </div>
   </div>
-  <app-input (addNewTask)="saveTask($event)"></app-input>
+  <div class="block--add">
+    <app-input (addNewTask)="saveTask($event)"></app-input>
+  </div>
+</div>
+
+<div class="error" [class.error-on]="hasError">
+  <p>Введите текст</p>
+  <p class="error-close-btn" (click)="closeError()">&#10015;</p>
 </div>

@@ -4,11 +4,9 @@ export enum  Status {
   InProgress = 'inProgress'
 }
 
-
 export interface Task{
   name:string;
-  isDone:boolean;
   id:number;
-  status?: Status;
+  status: Status;
 }
 

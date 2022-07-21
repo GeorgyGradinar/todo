@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-input',
@@ -8,6 +8,9 @@ import {Component, EventEmitter, Output} from '@angular/core';
 export class InputComponent {
   @Output() addNewTask: EventEmitter<string> = new EventEmitter<string>();
   public newName: string;
+  @Input()
+  isFullVersion: boolean;
+
 
   public saveTask(): void {
     this.addNewTask.emit(this.newName);
