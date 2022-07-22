@@ -7,131 +7,28 @@
   justify-content: center;
   flex-direction: column;
 
+  .button_version--full--mini {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    button {
+      width: 100px;
+      height: 30px;
+      background: #3e7fc0;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+
+      &:hover {
+        background: #cb0001;
+      }
+    }
+  }
 
   .todo-title {
     color: #3e7fc0;
-  }
-
-  .wrapper {
-    width: 500px;
-    height: 400px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 2px solid #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 10px 10px 20px #3a1056;
-    transition: 0.2s;
-
-
-    .header {
-      height: 50px;
-      background: #f1f1f1;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-
-
-      &-info {
-        display: flex;
-        background: #3e81c2;
-        margin-right: 10px;
-        border-radius: 16px;
-        padding: 3px 5px;
-        color: white;
-
-        &__all-value,
-        &__done-value {
-          display: flex;
-          width: 18px;
-          margin-left: 5px;
-          justify-content: center;
-          background: white;
-          border-radius: 20px;
-          color: #3e81c2;
-        }
-      }
-
-      &-btn__del--done,
-      &-btn__del--all {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 30px;
-        background: #f55050;
-        border: none;
-        margin-right: 10px;
-        color: white;
-        padding-right: 5px;
-        cursor: pointer;
-
-        &:hover {
-          background: #bb2a2a;
-        }
-
-        .img-del__btn {
-          width: 25px;
-          height: 25px;
-        }
-      }
-    }
-
-    .block-content {
-      background: white;
-      height: 230px;
-      margin: 20px;
-      overflow-y: auto;
-
-      .task {
-        height: 40px;
-        display: flex;
-        align-items: center;
-        padding: 5px;
-        border: 2px solid #f0f0f0;
-        border-radius: 20px;
-        margin-bottom: 10px;
-        margin-right: 5px;
-        cursor: pointer;
-
-        &:hover {
-          background: #f0f0f0;
-        }
-      }
-    }
-
-    .block-add {
-      height: 70px;
-      background: #f1f1f1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-}
-
-.error {
-  position: absolute;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  bottom: 50px;
-  right: -200px;
-  width: 150px;
-  height: 20px;
-  background: #a90c0c;
-  transition: .2s;
-  border-radius: 6px;
-  color: white;
-  box-shadow: 2px 2px 6px #540303;
-
-  &-close-btn {
-    cursor: pointer;
-  }
-
-  &-on {
-    right: 10px;
   }
 }
 
