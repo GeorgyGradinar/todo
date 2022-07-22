@@ -13,6 +13,7 @@
         <img class="task-img__del" src="../../assets/del-red.svg"
              (click)="removeById(item.id)" alt="bin">
       </div>
+
     </div>
     <div class="block-drop__button-remove">
       <button *ngIf="tasks.length"
@@ -33,6 +34,7 @@
         <img class="task-img__del" src="../../assets/del-red.svg" (click)="removeById(item.id)" alt="bin">
       </div>
     </div>
+
     <div class="block-drop__button-remove">
       <button *ngIf="countTaskStatus(status.InProgress)"
               (click)="removeByStatus(status.InProgress)">Remove In Progress
@@ -52,6 +54,7 @@
         <img class="task-img__del" src="../../assets/del-red.svg" (click)="removeById(item.id)" alt="bin">
       </div>
     </div>
+
     <div class="block-drop__button-remove">
       <button *ngIf="countTaskStatus(status.Done)"
               (click)="removeByStatus(status.Done)">Remove Done
