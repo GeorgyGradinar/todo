@@ -46,6 +46,7 @@
   &__button-remove{
     position: absolute;
     margin-top: 10px;
+
     button{
       width: 130px;
       height: 20px;
@@ -53,7 +54,6 @@
       background: #cb0001;
       border-radius: 5px;
       color: white;
-
 
       &:hover{
         background: #8d1517;
