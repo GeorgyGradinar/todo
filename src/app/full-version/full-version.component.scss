@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.block_drop {
+.block-drop {
   position: relative;
   width: 400px;
   max-width: 100%;
@@ -16,7 +16,7 @@
     width: 0;
   }
 
-  &-list {
+  &__list {
     height: 400px;
     border: solid 1px #3e7fc0;
     margin-top: 10px;
@@ -29,7 +29,7 @@
     padding: 0 10px;
   }
 
-  &-task {
+  &__task {
     padding: 20px 10px;
     margin-top: 10px;
     border: solid 1px #3e7fc0;
@@ -43,7 +43,7 @@
     border-radius: 20px;
   }
 
-  &-button_remove{
+  &__button-remove{
     position: absolute;
     margin-top: 10px;
     button{
@@ -78,6 +78,6 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.block_drop-list.cdk-drop-list-dragging .block_drop-task:not(.cdk-drag-placeholder) {
+.block-drop__list.cdk-drop-list-dragging .block-drop__task:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

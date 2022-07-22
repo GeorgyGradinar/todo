@@ -1,5 +1,5 @@
-<div (click)="toggleDoneTask()" class="task-check" [class.task-check_after-done]="task!.status === status.Done">
+<div (click)="toggleDoneTask()" class="task-check" [class.task-check__after--done]="task!.status === status.Done">
   <img class="task-check--done" src="../../../assets/chekbox-on.svg" alt="check mark">
 </div>
-<p class="task-name" [class.task-name_done]="task!.status === status.Done">{{ task.name }}</p>
-<img class="task-img__del" src="../../../assets/del-red.svg" (click)="removeById()" alt="bin">
+<p class="task__name" [class.task__name--done]="task!.status === status.Done">{{ task.name }}</p>
+<img class="task__img-del" src="../../../assets/del-red.svg" (click)="removeById()" alt="bin">

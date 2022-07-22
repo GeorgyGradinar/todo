@@ -34,15 +34,15 @@ export class FullVersionComponent implements OnInit{
     }
   }
 
-  public todo(): Task[] {
+  public get todo(): Task[] {
     return this.tasks.filter((task: Task) => task.status === Status.ToDo);
   }
 
-  public inProgress(): Task[] {
+  public get inProgress(): Task[] {
     return this.tasks.filter((task: Task) => task.status === Status.InProgress);
   }
 
-  public isDone(): Task[] {
+  public get isDone(): Task[] {
     return this.tasks.filter((task: Task) => task.status === Status.Done);
   }
 
