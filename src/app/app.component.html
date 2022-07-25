@@ -1,14 +1,26 @@
-<div class="wrap">
-  <div class="button_version--full--mini">
-    <button (click)="isFullVersion = !isFullVersion">
-      {{isFullVersion ? 'Mini version' : 'Full version'}}
-    </button>
-  </div>
+<div class="container">
+  <mat-card>
+    <div class="toggle">
+      <mat-slide-toggle class="toggle-button"
+        [(ngModel)]="isChecked"
+        (change)="changed($event)">
+        <mat-icon>{{ mode }}</mat-icon>
+      </mat-slide-toggle>
+    </div>
 
-  <h1 class="todo-title">Angular Todo list</h1>
-  <app-full-version *ngIf="isFullVersion; else miniVersion"></app-full-version>
-  <ng-template #miniVersion>
-    <app-mini-version></app-mini-version>
-  </ng-template>
+    <div class="wrap">
+      <div class="button_version--full--mini">
+        <button (click)="isFullVersion = !isFullVersion">
+          {{isFullVersion ? 'Mini version' : 'Full version'}}
+        </button>
+      </div>
+
+      <h1 class="todo-title">Angular Todo list</h1>
+      <app-full-version *ngIf="isFullVersion; else miniVersion"></app-full-version>
+      <ng-template #miniVersion>
+        <app-mini-version></app-mini-version>
+      </ng-template>
+
+    </div>
+  </mat-card>
 </div>
-
