@@ -1,0 +1,28 @@
+<div class="task" >
+
+  <div class="task-name" (click)="ngAfterViewInit()">
+    <input #nameInput  (blur) = "toggleInputShow()" *ngIf="!blockNameTask" [(ngModel)]="nameTask" >
+    <p  *ngIf="blockNameTask" (click)="blockNameTask = !blockNameTask">{{task?.name}}</p>
+  </div>
+
+  <div class="task-detail" >
+    <input #detailInput (blur) = "toggleInputShow()" *ngIf="!blockDetailTask" [(ngModel)]="detailTask" >
+    <p  *ngIf="blockDetailTask" (click)="blockDetailTask = !blockDetailTask" >{{task?.detail}}</p>
+  </div>
+
+  <div class="task-button" >
+
+    <div class="dropdown">
+      <button class="dropbtn">{{statusTask}}</button>
+      <div class="dropdown-content">
+        <a (click)="toggleTaskStatus(status.ToDo)">{{status.ToDo}}</a>
+        <a (click)="toggleTaskStatus(status.InProgress)">{{status.InProgress}}</a>
+        <a (click)="toggleTaskStatus(status.Done)">{{status.Done}}</a>
+      </div>
+    </div>
+
+    <div class="task-button--remove">
+      <button  (click)="remove()" > remove</button>
+    </div>
+  </div>
+</div>

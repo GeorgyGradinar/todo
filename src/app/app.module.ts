@@ -16,7 +16,10 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
-
+import {TaskDetailComponent} from './task-detail/task-detail.component';
+import {MatSelectModule} from "@angular/material/select";
+import {MatDialogModule} from "@angular/material/dialog";
+import {ConfirmationModalComponent} from './confirmation-modal/confirmation-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,8 @@ import {MatInputModule} from "@angular/material/input";
     InputComponent,
     FullVersionComponent,
     MiniVersionComponent,
+    TaskDetailComponent,
+    ConfirmationModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,9 @@ import {MatInputModule} from "@angular/material/input";
     ReactiveFormsModule,
     MatCardModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
