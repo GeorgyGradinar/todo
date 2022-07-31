@@ -97,7 +97,6 @@
   position: absolute;
   padding: 0 10px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
   bottom: 50px;
   right: -200px;
@@ -114,6 +113,6 @@
   }
 
   &-on {
-    right: 10px;
+    right: 40px;
   }
 }
