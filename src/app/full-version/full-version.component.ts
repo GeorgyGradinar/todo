@@ -23,7 +23,7 @@ export class FullVersionComponent implements OnInit{
 
   public saveTask(name: string): void {
     if (name.trim()) {
-      const task: Task = { name: name, id: Math.random(), status: Status.ToDo};
+      const task: Task = { name: name, detail:'', id: Math.random(), status: Status.ToDo};
       this.tasks.push(task)
       this.addToLocalStorage();
     } else {

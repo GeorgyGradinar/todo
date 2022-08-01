@@ -9,7 +9,10 @@
          #list="cdkDropList"
          [cdkDropListConnectedTo]="[doneList]"
          (cdkDropListDropped)="drop($event, status.ToDo)">
-      <div class="block-drop__task" *ngFor="let item of todo" cdkDrag [cdkDragData]="item">{{item.name}}
+      <div class="block-drop__task" *ngFor="let item of todo"
+           cdkDrag [cdkDragData]="item"
+           [routerLink]="'/details/'+item.id">
+        {{item.name}}
         <img class="task-img__del" src="../../assets/del-red.svg"
              (click)="removeById(item.id)" alt="bin">
       </div>
@@ -30,7 +33,10 @@
          class="block-drop__list"
          [cdkDropListConnectedTo]="[list]"
          (cdkDropListDropped)="drop($event, status.InProgress)">
-      <div class="block-drop__task" *ngFor="let item of inProgress" cdkDrag [cdkDragData]="item">{{item.name}}
+      <div class="block-drop__task" *ngFor="let item of inProgress"
+           cdkDrag [cdkDragData]="item"
+           [routerLink]="'/details/'+item.id">
+        {{item.name}}
         <img class="task-img__del" src="../../assets/del-red.svg" (click)="removeById(item.id)" alt="bin">
       </div>
     </div>
@@ -50,7 +56,9 @@
          class="block-drop__list"
          [cdkDropListConnectedTo]="[list]"
          (cdkDropListDropped)="drop($event, status.Done)">
-      <div class="block-drop__task" *ngFor="let item of isDone" cdkDrag [cdkDragData]="item">{{item.name}}
+      <div class="block-drop__task" *ngFor="let item of isDone"
+           cdkDrag [cdkDragData]="item"
+           [routerLink]="'/details/'+item.id">{{item.name}}
         <img class="task-img__del" src="../../assets/del-red.svg" (click)="removeById(item.id)" alt="bin">
       </div>
     </div>
