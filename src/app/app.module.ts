@@ -20,6 +20,7 @@ import {TaskDetailComponent} from './task-detail/task-detail.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ConfirmationModalComponent} from './confirmation-modal/confirmation-modal.component';
+import { StatusTasksComponent } from './full-version/status-tasks/status-tasks.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {ConfirmationModalComponent} from './confirmation-modal/confirmation-moda
     MiniVersionComponent,
     TaskDetailComponent,
     ConfirmationModalComponent,
+    StatusTasksComponent,
   ],
   imports: [
     BrowserModule,

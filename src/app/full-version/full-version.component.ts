@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {CdkDragDrop} from "@angular/cdk/drag-drop";
 import {Status, Task} from "../task";
 
 @Component({
@@ -46,25 +45,12 @@ export class FullVersionComponent implements OnInit{
     return this.tasks.filter((task: Task) => task.status === Status.Done);
   }
 
-  drop(event: CdkDragDrop<Task[]>, status: Status) {
-    let task: Task | undefined = this.tasks.find((item: Task) => item.id === event.item.data.id);
-    if (task) {
-      task.status = status
-      this.addToLocalStorage();
-    }
-  }
-
   public countTaskStatus(status: Status): number {
     return this.tasks.filter((task: Task) => task.status === status).length;
   }
 
-  public removeById(id: number): void {
-    this.tasks = this.tasks.filter(tasks => tasks.id != id)
-    this.addToLocalStorage();
-  }
-
-  public removeByStatus(status: Status):void{
-    this.tasks = this.tasks.filter((task: Task) => task.status !== status);
+  public updateAllTasks($event: Task[]): void {
+    this.tasks = $event;
     this.addToLocalStorage();
   }
 }
