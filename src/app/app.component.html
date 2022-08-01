@@ -1,23 +1,37 @@
-<div class="container">
-  <mat-card>
-    <div class="toggle">
-      <mat-slide-toggle class="toggle-button"
-                        [(ngModel)]="isChecked"
-                        (change)="changedTheme($event)">
-        <mat-icon>{{ mode }}</mat-icon>
-      </mat-slide-toggle>
-    </div>
+<!--<div class="container">-->
+<!--  <mat-card>-->
+<!--    <div class="toggle">-->
+<!--      <mat-slide-toggle class="toggle-button"-->
+<!--        [(ngModel)]="isChecked"-->
+<!--        (change)="changed($event)">-->
+<!--        <mat-icon>{{ mode }}</mat-icon>-->
+<!--      </mat-slide-toggle>-->
+<!--    </div>-->
 
-    <div class="wrap">
-      <div class="button_version--full--mini">
-        <button (click)="toggleVersion()">
-          {{isFullVersion ? 'Mini version' : 'Full version'}}
-        </button>
-      </div>
+<div class="wrap">
+  <!--      <div class="button_version&#45;&#45;full&#45;&#45;mini">-->
+  <!--        <button (click)="isFullVersion = !isFullVersion">-->
+  <!--          {{isFullVersion ? 'Mini version' : 'Full version'}}-->
+  <!--        </button>-->
+  <!--      </div>-->
 
-      <h1 class="todo-title">Angular Todo list</h1>
-      <router-outlet></router-outlet>
+        <h1 class="todo-title">Angular Todo list</h1>
+  <!--      <app-full-version *ngIf="isFullVersion; else miniVersion"></app-full-version>-->
+  <!--      <ng-template #miniVersion>-->
+  <!--        <app-mini-version></app-mini-version>-->
+  <!--      </ng-template>-->
+  <!--    </div>-->
 
-    </div>
-  </mat-card>
+  <!--    <a class="test" [routerLink]="'/main'" > детальная инфа по таску</a>-->
+  <!--  </mat-card>-->
+
+
+  <div class="toolbar">
+
+    <span class="hern" [routerLink]="'/mini'">mini</span>
+
+    <span class="hern-2" [routerLink]="'/full'">full</span>
+
+  </div>
+  <router-outlet></router-outlet>
 </div>

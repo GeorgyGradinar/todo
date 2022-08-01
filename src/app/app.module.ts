@@ -21,7 +21,6 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ConfirmationModalComponent} from './confirmation-modal/confirmation-modal.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

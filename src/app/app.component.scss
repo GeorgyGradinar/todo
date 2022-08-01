@@ -1,6 +1,20 @@
+.hern{
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  margin-right: 10px;
+}
+
+.hern-2{
+  position: absolute;
+  left: 60px;
+  top: 30px;
+  margin-right: 10px;
+}
+
 .toggle-button{
   position: absolute;
-  right: 70px;
+  right: 30px;
   top: 30px;
 }
 :host{
@@ -20,6 +34,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
 
   .button_version--full--mini {
     position: absolute;
@@ -46,6 +61,12 @@
   }
 }
 
+.test{
+  position: absolute;
+  left: 100px;
+  top: 30px;
+}
+
 @media (max-width: 1000px) {
   .error {
     right: -200px;
@@ -57,6 +78,17 @@
   }
 }
 
+@media (max-width: 600px) {
+  .wrapper {
+    max-width: 400px;
+    min-height: 600px;
+  }
+
+  .block-content {
+    min-height: 400px;
+    transition: 0.5s;
+  }
+}
 
 
 

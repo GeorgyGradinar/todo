@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Status, Task} from "../task";
 import {MatDialog} from "@angular/material/dialog";
@@ -10,50 +10,55 @@ import {ConfirmationModalComponent} from "../confirmation-modal/confirmation-mod
   styleUrls: ['./task-detail.component.scss']
 })
 
-export class TaskDetailComponent implements OnInit {
+export class TaskDetailComponent implements OnInit, AfterViewInit {
   public readonly kayLocalStorage: string = 'todos';
   public task?: Task;
   public tasks: Task[] = [];
   public status: typeof Status = Status;
   public taskId: number;
+  public nameTask?: string;
+  public detailTask?: string;
+  public statusTask?: string;
   public blockNameTask: boolean = true;
   public blockDetailTask: boolean = true;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              public dialog: MatDialog,
-  ) {
+              public dialog: MatDialog) {
   }
 
-  @ViewChild('nameTask2') nameTaskElement!: ElementRef<HTMLInputElement>;
-  public focusOnInputName(): void {
-    this.nameTaskElement.nativeElement.focus();
+  @ViewChild('nameInput') nameInputElement!: ElementRef<HTMLInputElement>;
+  public ngAfterViewInit(): void {
+    this.nameInputElement.nativeElement.focus();
   }
 
-  @ViewChild('detailTask2') detailTaskElement!: ElementRef<HTMLInputElement>;
-  public focusOnInputDetail(): void {
-    this.detailTaskElement.nativeElement.focus();
-  }
+
 
   ngOnInit(): void {
     this.taskId = this.route.snapshot.params['id'];
     this.tasks = JSON.parse(localStorage.getItem(this.kayLocalStorage) || '[]');
     this.task = this.tasks.find(tasks => tasks.id == this.taskId);
+    this.statusTask = this.task?.status;
+    this.nameTask = this.task?.name;
+    this.detailTask = this.task?.detail;
+
   }
 
   public addToLocalStorage(): void {
     localStorage.setItem(this.kayLocalStorage, JSON.stringify(this.tasks));
   }
 
-  public clickOutInput(): void {
+  public toggleInputShow(): void {
     this.blockNameTask = true;
     this.blockDetailTask = true;
     this.updateTask();
   }
 
   public updateTask(): void {
-    this.tasks = this.tasks.filter(tasks => tasks.id != this.taskId);
-    if (this.task) {
+    if (this.task && this.nameTask && this.detailTask) {
+      this.task.name = this.nameTask;
+      this.task.detail = this.detailTask;
+      this.tasks = this.tasks.filter(tasks => tasks.id != this.taskId);
       this.tasks.push(this.task);
     }
     this.addToLocalStorage();
@@ -62,18 +67,18 @@ export class TaskDetailComponent implements OnInit {
   public toggleTaskStatus(status: Status): void {
     if (this.task) {
       this.task.status = status;
-      this.addToLocalStorage();
+      this.statusTask = status;
+      this.updateTask()
     }
   }
 
-  public remove(): void {
+  remove(): void {
     const dialogRef = this.dialog.open(ConfirmationModalComponent)
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.tasks = this.tasks.filter(tasks => tasks.id != this.taskId);
-        this.addToLocalStorage();
         this.router.navigate(['/mini']);
       }
-    })
+    });
   }
+
 }
