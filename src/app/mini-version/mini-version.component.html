@@ -25,8 +25,7 @@
   <div class="block-content">
     <div class="task" *ngFor="let task of tasks; let i  = index" (click)="toggleStatus(task)">
       <app-task [task]="task" (removeTask)="removeById(task.id)"
-                (changeStatus)="toggleStatus(task)"
-                [routerLink]="'/details/'+task.id"></app-task>
+                (changeStatus)="toggleStatus(task)"></app-task>
     </div>
   </div>
   <div class="block--add">
