@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Status, Task} from "../task";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-full-version',
@@ -11,6 +12,11 @@ export class FullVersionComponent implements OnInit{
   public tasks: Task[] = [];
   public readonly status: typeof Status = Status;
   public hasError: boolean = false;
+
+  constructor(
+    public snackBar: MatSnackBar
+  ) {
+  }
 
   ngOnInit(): void {
     this.tasks = JSON.parse(localStorage.getItem(this.kayLocalStorage) || '[]');
@@ -25,7 +31,12 @@ export class FullVersionComponent implements OnInit{
       const task: Task = { name: name, detail:'', id: Math.random(), status: Status.ToDo};
       this.tasks.push(task)
       this.addToLocalStorage();
+      this.snackBar.open('Add new task', '', {
+        duration: 3000,
+
+      });
     } else {
+
       this.hasError = true;
       setTimeout(() => {
         this.hasError = false;

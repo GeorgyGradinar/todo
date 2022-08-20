@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Status, Task} from "../task";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationModalComponent} from "../confirmation-modal/confirmation-modal.component";
+import {AppComponent} from "../app.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-task-detail',
@@ -22,6 +24,8 @@ export class TaskDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog,
+              public isFullVersion:AppComponent,
+              public snackBar: MatSnackBar
   ) {
   }
 
@@ -72,8 +76,23 @@ export class TaskDetailComponent implements OnInit {
       if (result) {
         this.tasks = this.tasks.filter(tasks => tasks.id != this.taskId);
         this.addToLocalStorage();
-        this.router.navigate(['/mini']);
+        this.snackBar.open('Deleted', '', {
+          duration: 3000
+        });
+        if (this.isFullVersion.isFullVersion){
+          this.router.navigate(['/full']);
+        }else {
+          this.router.navigate(['/mini']);
+        }
       }
     })
+  }
+
+  public exit(): void{
+    if (this.isFullVersion.isFullVersion){
+      this.router.navigate(['/full']);
+    }else {
+      this.router.navigate(['/mini']);
+    }
   }
 }

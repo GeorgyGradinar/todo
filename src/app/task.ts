@@ -11,3 +11,10 @@ export interface Task{
   status: Status;
 }
 
+export interface Statistic{
+  status: Status;
+  count: number;
+}
+
+
+

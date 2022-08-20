@@ -4,16 +4,15 @@
        class="block-drop__list"
        (cdkDropListDropped)="drop($event, statusTask)">
     <div class="block-drop__task" *ngFor="let item of allTaskStatus"
-         cdkDrag [cdkDragData]="item"
-         [routerLink]="'/details/'+item.id">
-      {{item.name}}
+         cdkDrag [cdkDragData]="item">
+      <p [routerLink]="'/details/'+item.id">{{item.name}}</p>
       <img class="task-img__del" src="../../../assets/del-red.svg"
            (click)="removeById(item.id)" alt="bin">
     </div>
   </div>
 
   <div class="block-drop__button-remove">
-    <button *ngIf="tasks.length"
+    <button *ngIf="countTask"
             (click)="removeByStatus(statusTask)">Remove Todo
     </button>
   </div>
