@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Chart } from "chart.js";
+import {Chart} from "chart.js";
 import {Status} from "../../task";
+import {
+  CHARTJS_BAR_BACKGROUND_COLOR,
+  CHARTJS_BAR_BORDER_COLOR
+} from "../../const"
 
 @Component({
   selector: 'app-bar',
@@ -8,30 +12,22 @@ import {Status} from "../../task";
   styleUrls: ['./bar.component.scss']
 })
 export class BarComponent implements OnInit {
-  @Input() data:number[]=[];
+  @Input() data: number[] = [];
   public chart: Chart;
   public readonly status: typeof Status = Status;
-  public labels= [Status.ToDo, Status.InProgress, Status.Done];
+  public labels = [Status.ToDo, Status.InProgress, Status.Done];
 
-  ngOnInit() {
+ public ngOnInit(): void {
     this.chart = new Chart("canvas-bar", {
       type: "bar",
       data: {
         labels: this.labels,
         datasets: [
           {
-            label: 'none',
+            label: 'All Bars',
             data: this.data,
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-            ],
-            borderColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-            ],
+            backgroundColor: CHARTJS_BAR_BACKGROUND_COLOR,
+            borderColor: CHARTJS_BAR_BORDER_COLOR,
             borderWidth: 1
           }
         ]

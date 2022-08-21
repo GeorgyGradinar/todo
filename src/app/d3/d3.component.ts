@@ -31,5 +31,4 @@ export class D3Component implements OnInit {
       this.data.push(task);
     }
   }
-
 }

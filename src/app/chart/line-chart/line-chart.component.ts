@@ -1,6 +1,11 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import { ChartConfiguration, ChartOptions } from "chart.js";
-import { Status} from "../../task";
+import {ChartConfiguration, ChartOptions} from "chart.js";
+import {Status} from "../../task";
+import {
+  CHARTJS_LINE_GRADIENT_COLOR_START,
+  CHARTJS_LINE_GRADIENT_COLOR_STOP,
+  CHARTJS_BAR_BORDER_COLOR
+} from "../../const";
 
 @Component({
   selector: 'app-line-chart',
@@ -8,32 +13,29 @@ import { Status} from "../../task";
   styleUrls: ['./line-chart.component.scss']
 })
 export class LineChartComponent implements OnInit {
-  @Input() data:number[]=[];
+  @Input() data: number[] = [];
   @ViewChild('myCanvas') canvas!: ElementRef;
   public readonly status: typeof Status = Status;
-  public countTasks:number[]=[];
-  public labels= [Status.ToDo, Status.InProgress, Status.Done];
-  public width:number
-  public height:number
-  public gradient:any;
+  public countTasks: number[] = [];
+  public labels = [Status.ToDo, Status.InProgress, Status.Done];
+  public width: number
+  public height: number
+  public gradient: any;
   public lineChartLegend = false;
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
+ public ngOnInit(): void {
     this.countTasks.push(...this.data);
   }
 
-  public getGradient(ctx:any, chartArea:any): void {
+  public getGradient(ctx: any, chartArea: any): void {
     const chartWidth = chartArea.right - chartArea.left;
     const chartHeight = chartArea.bottom - chartArea.top;
     if (!this.gradient || this.width !== chartWidth || this.height !== chartHeight) {
       this.width = chartWidth;
       this.height = chartHeight;
       this.gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
-      this.gradient.addColorStop(0, 'rgba(0,34,255,0)');
-      this.gradient.addColorStop(1, 'rgb(0,34,255)');
+      this.gradient.addColorStop(0, CHARTJS_LINE_GRADIENT_COLOR_START);
+      this.gradient.addColorStop(1, CHARTJS_LINE_GRADIENT_COLOR_STOP);
     }
     return this.gradient;
   }
@@ -45,12 +47,12 @@ export class LineChartComponent implements OnInit {
         data: this.countTasks,
         label: 'Tasks ',
         tension: 0.5,
-        borderColor: '02157EFF',
+        borderColor: CHARTJS_BAR_BORDER_COLOR,
         borderWidth: 1,
         fill: {
           target: 'origin',
           // @ts-ignore
-          above: (context: any)=>{
+          above: (context: any) => {
             const chart = context.chart;
             const {ctx, chartArea} = chart;
             return this.getGradient(ctx, chartArea);

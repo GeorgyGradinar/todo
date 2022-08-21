@@ -3,6 +3,7 @@ import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
 import * as d3Shape from 'd3-shape';
 import {Statistic, Status} from "../../task";
+import {D3_PIE_BACKGROUND_COLOR} from "../../const";
 
 @Component({
   selector: 'app-pie-chart',
@@ -31,7 +32,7 @@ export class PieChartComponent implements OnInit {
     this.radius = Math.min(this.width, this.height) /2;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.data.map((count) =>this.count += count.count)
     this.initSvg();
     this.drawPie();
@@ -39,7 +40,7 @@ export class PieChartComponent implements OnInit {
 
   public initSvg(): void{
     this.color = d3Scale.scaleOrdinal()
-      .range(['#FFA500', '#00FF00', '#FF0000', '#6b486b', '#FF00FF', '#d0743c', '#00FA9A']);
+      .range(D3_PIE_BACKGROUND_COLOR);
     this.arc = d3Shape.arc()
       .outerRadius(this.radius - 5)
       .innerRadius(0);

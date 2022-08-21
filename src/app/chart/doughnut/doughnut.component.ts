@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Chart } from 'chart.js';
 import {Status} from "../../task";
+import {CHARTJS_DOUGHTNUT_BACKGROUND_COLOR} from "../../const";
 
 @Component({
   selector: 'app-doughnut',
@@ -13,7 +14,7 @@ export class DoughnutComponent implements OnInit {
   public readonly status: typeof Status = Status;
   public labels= [Status.ToDo, Status.InProgress, Status.Done];
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.chart = new Chart('canvas', {
       type: 'doughnut',
       data: {
@@ -21,7 +22,7 @@ export class DoughnutComponent implements OnInit {
         datasets: [
           {
             data: this.data,
-            backgroundColor: ['rgb(229,118,118)','rgb(136,134,206)', 'rgb(121,227,207)']
+            backgroundColor: CHARTJS_DOUGHTNUT_BACKGROUND_COLOR
           },
         ]
       },

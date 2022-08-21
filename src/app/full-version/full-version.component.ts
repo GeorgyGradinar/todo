@@ -18,7 +18,7 @@ export class FullVersionComponent implements OnInit{
   ) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.tasks = JSON.parse(localStorage.getItem(this.kayLocalStorage) || '[]');
   }
 
