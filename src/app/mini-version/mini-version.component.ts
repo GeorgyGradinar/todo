@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Status, Task} from "../task";
+import {ConfirmationModalComponent} from "../confirmation-modal/confirmation-modal.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-mini-version',
@@ -12,8 +14,14 @@ export class MiniVersionComponent implements OnInit {
   public hasError: boolean = false;
   public readonly status: typeof Status = Status;
 
+  constructor(
+    public dialog: MatDialog
+  ) {
+  }
+
   public ngOnInit(): void {
     this.tasks = JSON.parse(localStorage.getItem(this.kayLocalStorage) || '[]');
+
   }
 
   public addToLocalStorage(): void {
@@ -22,7 +30,7 @@ export class MiniVersionComponent implements OnInit {
 
   public saveTask(name: string): void {
     if (name.trim()) {
-      const task: Task = {name: name, detail:'', id: Math.random(), status: Status.ToDo};
+      const task: Task = {name: name, detail: '', id: Math.random(), status: Status.ToDo};
       this.tasks.push(task)
       this.addToLocalStorage();
     } else {
@@ -47,8 +55,13 @@ export class MiniVersionComponent implements OnInit {
   }
 
   public removeById(id: number): void {
-    this.tasks = this.tasks.filter(tasks => tasks.id != id)
-    this.addToLocalStorage();
+    const dialogRef = this.dialog.open(ConfirmationModalComponent)
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.tasks = this.tasks.filter(tasks => tasks.id != id);
+        this.addToLocalStorage();
+      }
+    })
   }
 
   public removeAll(): void {

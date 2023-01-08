@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
@@ -20,6 +20,17 @@ import {TaskDetailComponent} from './task-detail/task-detail.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ConfirmationModalComponent} from './confirmation-modal/confirmation-modal.component';
+import { StatusTasksComponent } from './full-version/status-tasks/status-tasks.component';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { BarChartComponent } from './d3/bar-chart/bar-chart.component';
+import { D3Component } from './d3/d3.component';
+import { PieChartComponent } from './d3/pie-chart/pie-chart.component';
+import { ChartComponent } from './chart/chart.component';
+import { LineChartComponent } from './chart/line-chart/line-chart.component';
+import {NgChartsModule} from "ng2-charts";
+import { BarComponent } from './chart/bar/bar.component';
+import { DoughnutComponent } from './chart/doughnut/doughnut.component';
 
 
 @NgModule({
@@ -31,6 +42,15 @@ import {ConfirmationModalComponent} from './confirmation-modal/confirmation-moda
     MiniVersionComponent,
     TaskDetailComponent,
     ConfirmationModalComponent,
+    StatusTasksComponent,
+    SnackBarComponent,
+    BarChartComponent,
+    D3Component,
+    PieChartComponent,
+    ChartComponent,
+    LineChartComponent,
+    BarComponent,
+    DoughnutComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,10 +66,13 @@ import {ConfirmationModalComponent} from './confirmation-modal/confirmation-moda
     MatButtonModule,
     MatInputModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
+    NgChartsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {
 }

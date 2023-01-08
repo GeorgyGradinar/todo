@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {CdkDragDrop} from "@angular/cdk/drag-drop";
 import {Status, Task} from "../task";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-full-version',
@@ -13,7 +13,12 @@ export class FullVersionComponent implements OnInit{
   public readonly status: typeof Status = Status;
   public hasError: boolean = false;
 
-  ngOnInit(): void {
+  constructor(
+    public snackBar: MatSnackBar
+  ) {
+  }
+
+  public ngOnInit(): void {
     this.tasks = JSON.parse(localStorage.getItem(this.kayLocalStorage) || '[]');
   }
 
@@ -26,7 +31,12 @@ export class FullVersionComponent implements OnInit{
       const task: Task = { name: name, detail:'', id: Math.random(), status: Status.ToDo};
       this.tasks.push(task)
       this.addToLocalStorage();
+      this.snackBar.open('Add new task', '', {
+        duration: 3000,
+
+      });
     } else {
+
       this.hasError = true;
       setTimeout(() => {
         this.hasError = false;
@@ -46,25 +56,12 @@ export class FullVersionComponent implements OnInit{
     return this.tasks.filter((task: Task) => task.status === Status.Done);
   }
 
-  drop(event: CdkDragDrop<Task[]>, status: Status) {
-    let task: Task | undefined = this.tasks.find((item: Task) => item.id === event.item.data.id);
-    if (task) {
-      task.status = status
-      this.addToLocalStorage();
-    }
-  }
-
   public countTaskStatus(status: Status): number {
     return this.tasks.filter((task: Task) => task.status === status).length;
   }
 
-  public removeById(id: number): void {
-    this.tasks = this.tasks.filter(tasks => tasks.id != id)
-    this.addToLocalStorage();
-  }
-
-  public removeByStatus(status: Status):void{
-    this.tasks = this.tasks.filter((task: Task) => task.status !== status);
+  public updateAllTasks($event: Task[]): void {
+    this.tasks = $event;
     this.addToLocalStorage();
   }
 }

@@ -1,9 +1,10 @@
-.toggle-button{
+.toggle-button {
   position: absolute;
   right: 70px;
   top: 30px;
 }
-:host{
+
+:host {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -21,12 +22,12 @@
   justify-content: center;
   flex-direction: column;
 
-  .button_version--full--mini {
+  .block_button {
     position: absolute;
     top: 20px;
     left: 20px;
 
-    button {
+    .button__change__version {
       width: 100px;
       height: 30px;
       background: #3e7fc0;
@@ -34,11 +35,28 @@
       border-radius: 5px;
       color: white;
       cursor: pointer;
-
+      margin-right: 10px;
       &:hover {
         background: #cb0001;
       }
     }
+  }
+
+  .button-d3,
+  .button-chart {
+    width: 100px;
+    height: 30px;
+    background: #3e7fc0;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+
+    &:hover {
+      background: #cb0001;
+    }
+
   }
 
   .todo-title {

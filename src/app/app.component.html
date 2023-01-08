@@ -9,10 +9,12 @@
     </div>
 
     <div class="wrap">
-      <div class="button_version--full--mini">
-        <button (click)="toggleVersion()">
+      <div class="block_button">
+        <button class="button__change__version" (click)="toggleVersion()">
           {{isFullVersion ? 'Mini version' : 'Full version'}}
         </button>
+        <button class="button-d3" [routerLink]="'/d3/'">D3</button>
+        <button class="button-chart" [routerLink]="'/chart/'">Chart.js</button>
       </div>
 
       <h1 class="todo-title">Angular Todo list</h1>
